@@ -124,7 +124,7 @@ public class ChallengeService {
         if (StringUtils.isEmpty(locale)) {
             locale = StringUtils.EMPTY;
         }
-        questionManager.deleteChallengeQuestionSet(challengeSetId, locale, getTenantDomainFromContext());
+//        questionManager.deleteChallengeQuestionSet(challengeSetId, locale, getTenantDomainFromContext());
         return true;
     }
 

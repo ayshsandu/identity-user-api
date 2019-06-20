@@ -6,6 +6,9 @@ import org.wso2.carbon.identity.rest.api.user.association.v1.*;
 import org.wso2.carbon.identity.rest.api.user.association.v1.dto.AssociationUserRequestDTO;
 import org.wso2.carbon.identity.rest.api.user.association.v1.dto.AssociationSwitchRequestDTO;
 import org.wso2.carbon.identity.rest.api.user.association.v1.dto.AssociationRequestDTO;
+import org.wso2.carbon.identity.rest.api.user.association.v1.util.Utils;
+import org.wso2.carbon.identity.user.account.association.dto.UserAccountAssociationDTO;
+import org.wso2.carbon.identity.user.account.association.exception.UserAccountAssociationException;
 
 import javax.ws.rs.core.Response;
 
@@ -41,13 +44,17 @@ public class UsersApiServiceImpl extends UsersApiService {
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
-    public Response usersUserIdAssociationsDelete(String userId){
-        // do some magic!
+    public Response usersUserIdAssociationsDelete(String userId) {
+        // do some mag
+        try {
+            UserAccountAssociationDTO[] accountAssociationsOfUser = Utils.getUserAccountConnector().getAccountAssociationsOfUser(userId);
+            Response.ok().entity(accountAssociationsOfUser).build();
+        } catch (UserAccountAssociationException e) {
+        }
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
     public Response usersUserIdAssociationsGet(String userId){
-        // do some magic!
         return Response.ok().entity(new ApiResponseMessage(ApiResponseMessage.OK, "magic!")).build();
     }
     @Override
