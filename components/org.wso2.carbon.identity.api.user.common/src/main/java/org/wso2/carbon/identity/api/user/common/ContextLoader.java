@@ -17,6 +17,7 @@
 package org.wso2.carbon.identity.api.user.common;
 
 import org.wso2.carbon.base.MultitenantConstants;
+import org.wso2.carbon.context.PrivilegedCarbonContext;
 import org.wso2.carbon.identity.core.util.IdentityUtil;
 
 public class ContextLoader {
@@ -28,5 +29,10 @@ public class ContextLoader {
             tenantDomain = (String) IdentityUtil.threadLocalProperties.get().get(Constants.TENANT_NAME_FROM_CONTEXT);
         }
         return tenantDomain;
+    }
+
+    public static String getUsernameFromContext() {
+
+        return PrivilegedCarbonContext.getThreadLocalCarbonContext().getUsername();
     }
 }
